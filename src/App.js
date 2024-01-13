@@ -6,122 +6,25 @@ import {v4 as uuidv4} from 'uuid';
 import AddEmployee from './components/AddEmploye';
 import EditEmployee from './components/EditEmployee';
 import Header from './components/Header';
+import Employees from './pages/Employees';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Customers from './pages/Customer';
 
 function App() {
   
-  const [role, setRole] = useState("dev");
-  const [employees, setEmployees] = useState([
-    {
-      id: 1,
-      name: 'Israel',
-      role: 'Developer',
-      img: 'https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg'
-    },
-    {
-      id: 2,
-      name: 'James',
-      role: 'Marketer',
-      img: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?'
-    },
-    
-    {
-      id: 3,
-      name: 'Paul',
-      role: 'Admin',
-      img: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?'
-    },
-    {
-      id: 4,
-      name: 'Issy',
-      role: 'Designer',
-      img: 'https://images.pexels.com/photos/2092474/pexels-photo-2092474.jpeg'
-    },
-    {
-      id: 5,
-      name: 'Olamide',
-      role: 'Manager',
-      img: 'https://images.pexels.com/photos/2613260/pexels-photo-2613260.jpeg'
-    },
-    {
-      id: 6,
-      name: 'Ola',
-      role: 'Intern',
-      img: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg'
-    },
-  ])
-
-  /*function updateEmployee(id, newName, newRole){
-    const updatedEmployees = employees.map((employee) => {
-      //setEmployees(updatedEmployees)
-      if (id === employees.id) {
-        return{ ...employee, name: newName, role: newRole};
-      }
-      return employee;
-    });
-
-   // console.log('updateEmployee inside of app.js');
-  }*/
-
-  function updateEmployee(id, newName, newRole){
-    const updatedEmployees = employees.map((employee) => {
-      if (id === employee.id) {
-        return{ ...employee, name: newName, role: newRole};
-      }
-      return employee;
-    });
-    setEmployees(updatedEmployees);
-   }
-
-  function newEmployee(name, role, img){
-    const newEmployee = {
-      id: uuidv4(),
-      name: name,
-      role: role,
-      img: img,
-    };
-    setEmployees([...employees, newEmployee]);
-  }
-
-  const showEmployees = true
   return (
-    <div className="App bg-gray-300 min-h-screen">
-    <Header/>
-    
-    {showEmployees ? (
-      <>
-   
-        
-      <div  className='flex flex-wrap justify-center'>
-        {employees.map((employee) => {
-          const editEmployee = (
-            <EditEmployee id={employee.id} name={employee.name} role={employee.role} updateEmployee = {updateEmployee}/>
-          );
+    <BrowserRouter>
+  <Header>
+  
+    <Routes>
+      <Route path='/employees' element = {<Employees/>}/>
 
-        
-          //console.log(uuidv4());
-        
-          return(
-            <Employee 
-            key ={employee.id}
-            id= {employee.id}
-            name = {employee.name}
-            role = {employee.role}
-            img = {employee.img}
-            updateEmployee={updateEmployee}
-            />
-          );
-        })}
-      </div>
-
-      <AddEmployee newEmployee= {newEmployee}/>
-        </>
-        
-    ):(
-      <p>You cannot see the employee</p>
+      <Route path = '/customers' element = {<Customers/>}/>
+    </Routes>
+    </Header>
+  </BrowserRouter>
     
-    )}
-        
-    </div>
+  
   );
 }
 
