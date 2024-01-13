@@ -15,7 +15,7 @@ function AddEmployee(props) {
   return (
     <>
     <div style={{display: 'flex', justifyContent: 'center'}}>
- <button onClick={handleShow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">+ Add Employee</button>
+ <button onClick={handleShow} className="block mx-auto m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">+ Add Employee</button>
 </div>
 
       <Modal
